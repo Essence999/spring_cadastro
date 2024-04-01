@@ -1,18 +1,24 @@
 # Spring Racoon - Sistema de cadastro de usuários
 
-CRUD - Java Spring com frontend.
+Spring Racoon é um sistema CRUD completo para gerenciamento de usuários, desenvolvido em Java Spring com uma interface.
 
-# Backend - Java Spring
+# Funcionalidades:
+- Cadastro de Usuários
+- Consulta de Usuários
+- Edição de Usuários
+- Exclusão de Usuários
+
+# Tecnologias utilizadas no backend:
 - Java 17
 - Spring Boot 3.2.4
-- H2 Database
+- H2 Database (banco de dados)
 - Spring Data JPA
 - Lombok
 - Validation
-- Thymeleaf
+- Thymeleaf (renderização de templates HTML)
 
-# Frontend
-- HTML / CSS
+# Frontend:
+- HTML/CSS
 - Javascript
-- JQuery
+- jQuery
 - Bootstrap 5.3
