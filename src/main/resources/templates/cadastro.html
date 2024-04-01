@@ -1,0 +1,90 @@
+<!doctype html>
+<html xmlns:th="https://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Spring Racoon</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/img/guaxinim-favicon.png}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <div th:replace="~{fragments/navbar.html :: navbar}"></div>
+
+    <form class="container-fluid" style="width: 800px; margin-bottom: 100px;" id="userForm" th:object="${user}">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">@</span>
+            <input required type="text" class="form-control" placeholder="Nome do Usuário" aria-label="Nome"
+                aria-describedby="basic-addon1" th:field="*{name}">
+        </div>
+
+        <div class="input-group mb-3">
+            <input required type="email" class="form-control" placeholder="Seu email" aria-label="Email do Usuário"
+                aria-describedby="basic-addon2" th:field="*{email}">
+            <span class="input-group-text" id="basic-addon2">@exemplo.com</span>
+        </div>
+
+        <div class="input-group mb-3">
+            <input required type="text" class="form-control" placeholder="CPF" aria-label="CPF" th:field="*{cpf}">
+            <span class="input-group-text"> </span>
+            <input required type="text" class="form-control" placeholder="Cidade" aria-label="city" th:field="*{city}">
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">+55</span>
+            <input required type="text" class="form-control" placeholder="Número de Telefone" aria-label="phoneNumber"
+                aria-describedby="basic-addon1" th:field="*{phoneNumber}">
+        </div>
+        <a href="/lista" class="btn btn-danger"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i>
+            Lista</a>
+        <button type="submit" class="btn btn-success"> <i class="fa-solid fa-plus" style="color: #ffffff;"></i>
+            Cadastrar</button>
+    </form>
+
+    <div th:replace="~{fragments/footer :: footer}"></div>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#userForm').submit(function (e) {
+            e.preventDefault();
+
+            // Coletar os dados do formulário
+            var data = {};
+            $(this).serializeArray().forEach(function (item) {
+                data[item.name] = item.value;
+            });
+
+            // Enviar os dados como JSON para a API Rest.
+            $.ajax({
+                url: '/users',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                success: function (response) {
+                    console.log(response);
+                    // Limpar os campos do formulário após o envio bem-sucedido
+                    $('#userForm').trigger('reset');
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error:', error);
+                }
+            });
+        });
+    });
+</script>
+
+
+</html>
