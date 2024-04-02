@@ -88,7 +88,7 @@
                 type: 'DELETE',
                 success: function (response) {
                     console.log(response);
-                    $('a[data-id="' + userId + '"]').closest('tr').remove();
+                    window.location.reload();
                 },
                 error: function (xhr, status, error) {
                     console.error('Error:', error);
