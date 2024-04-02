@@ -29,14 +29,15 @@
         </div>
 
         <div class="input-group mb-3">
-            <input required type="text" class="form-control" placeholder="CPF" aria-label="CPF" th:field="*{cpf}">
+            <input required type="text" class="form-control" id="cpf" placeholder="CPF" aria-label="CPF"
+                th:field="*{cpf}">
             <span class="input-group-text"> </span>
             <input required type="text" class="form-control" placeholder="Cidade" aria-label="city" th:field="*{city}">
         </div>
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">+55</span>
-            <input required type="text" class="form-control" placeholder="Número de Telefone" aria-label="phoneNumber"
-                aria-describedby="basic-addon1" th:field="*{phoneNumber}">
+            <input required type="text" class="form-control" id="tel" placeholder="Número de Telefone"
+                aria-label="phoneNumber" aria-describedby="basic-addon1" th:field="*{phoneNumber}">
         </div>
         <a href="/lista" class="btn btn-danger"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i>
             Lista</a>
@@ -55,12 +56,15 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
     crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 <script>
     $(document).ready(function () {
+        $("#cpf").mask("999.999.999-99");
+        $("#tel").mask("(99) 99999-9999");
+
         $('#userForm').submit(function (e) {
             e.preventDefault();
-
             // Coletar os dados do formulário
             var data = {};
             $(this).serializeArray().forEach(function (item) {
