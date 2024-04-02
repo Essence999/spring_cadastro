@@ -2,7 +2,7 @@
 
 Spring Racoon é um sistema CRUD completo para gerenciamento de usuários, desenvolvido em Java Spring com uma interface. O endpoint principal é: http://localhost:8080/home
 
-<img src"demo.gif">
+<img src="demo.gif">
 
 # Funcionalidades:
 - Cadastro de Usuários
